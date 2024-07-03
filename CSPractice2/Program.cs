@@ -11,7 +11,7 @@ namespace CSPractice2
         class Parent
         {
             public int variable = 273;
-            public void Method()
+            public virtual void Method()
             {
                 Console.WriteLine("부모 메서드");
             }
@@ -23,6 +23,14 @@ namespace CSPractice2
             public new void Method()
             {
                 Console.WriteLine("자식 메서드");
+            }
+        }
+
+        class Child2 : Parent
+        {
+            public override void Method()
+            {
+                Console.WriteLine("오버라이드된 자식 메서드");
             }
         }
         int number = 10;
@@ -44,6 +52,14 @@ namespace CSPractice2
             p.Method(); // 부모 메서드
             // 자식 취급
             ((Child)p).Method(); // 자식 메서드
+
+            // #6 23-8. 오버라이딩
+            Child2 child2 = new Child2();
+            child2.Method(); // 오버라이드된 자식 메서드
+            ((Parent)child2).Method(); // 오버라이드된 자식 메서드 (부모메서드xxxxx)
+            Parent p2 = child2;
+            p2.Method(); // 오버라이드된 자식 메서드 (부모메서드xxxxx)
+            ((Child2)p2).Method(); // 오버라이드된 자식 메서드 (부모메서드xxxxx)
         }
     }
 }
